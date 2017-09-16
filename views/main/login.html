@@ -13,7 +13,7 @@
     <div class="login">
         <div class="login-wrap">
             <div class="avatar">
-                <img src="./uploads/monkey.png" class="img-circle" alt="">
+                <img src="/uploads/monkey.png" class="img-circle" alt="">
             </div>
             <form id="loginForm" class="col-xs-offset-1 col-xs-10">
                 <div class="input-group input-group-lg">
@@ -36,7 +36,21 @@
     <script src="/public/assets/jquery/jquery.min.js"></script>
     <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        
+        $("#loginBtn").on("click", function () {
+            $.ajax({
+                type : 'post',
+                url : '/api/login',
+                data : $("#loginForm").serialize(),
+                dataType : 'json',
+                success : function (data) {
+                    if(data.code == 200){
+                        location.href = '/main/index';
+                    }
+                }
+            });
+
+            return false;
+        })
     </script>
 </body>
 </html>
