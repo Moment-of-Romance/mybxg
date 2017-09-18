@@ -178,6 +178,7 @@
     </div>
     
     <script src="/public/assets/jquery/jquery.min.js"></script>
+    <script src="/public/assets/jquery-cookie/jquery.cookie.js"></script>
     <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/public/assets/nprogress/nprogress.js"></script>
     <script src="/public/assets/echarts/echarts.min.js"></script>
@@ -210,19 +211,7 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 
-        //实现退出登录
-        $("#exists").on("click", function () {
-            $.ajax({
-                type : 'post',
-                url : '/api/logout',
-                dataType : 'json',
-                success : function (data) {
-                    if(data.code == 200){
-                        location.href = 'main/login';
-                    }
-                }
-            })
-        })
+
     </script>
 </body>
 </html>
