@@ -1,7 +1,7 @@
 /**
  * Created by 54023 on 2017/9/19.
  */
-define(['jquery','template','cookie'], function ($,template) {
+define(['jquery','template','cookie','bootstrap'], function ($,template) {
     $.ajax({
         type : 'get',
         url : '/api/teacher',
@@ -12,6 +12,7 @@ define(['jquery','template','cookie'], function ($,template) {
                 console.log(data);
                 var html = template('teacherInfo',{list:data.result});
                 $('.teacher-list tbody').html(html);
+                //启用/注销功能
                 $(".cancle").on('click',function(){
                     //获取参数 tc_id 和tc_status
                     var that = this;
@@ -33,6 +34,23 @@ define(['jquery','template','cookie'], function ($,template) {
                                     $(that).html('注销');
                                 }
                             }
+                        }
+                    })
+                });
+                //查看功能
+                $('.queryList').on('click',function(){
+                    var that = this;
+                    var td = $(that).parent();
+                    var tcId = td.attr('data-tcId');
+                    $.ajax({
+                        type : 'get',
+                        url : '/api/teacher/view',
+                        data : {tc_id : tcId},
+                        dataType : 'json',
+                        success : function(data){
+                            var html = template('queryList',data.result);
+                            $('#teacherInfoModal').html(html);
+                            $('#teacherModal').modal();
                         }
                     })
                 })
