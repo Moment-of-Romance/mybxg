@@ -10,7 +10,9 @@ require.config({
         bootstrap : 'bootstrap/js/bootstrap',
         common : '../js/common',
         login : '../js/login',
-        teacherList : '../js/teacherList'
+        teacherList : '../js/teacherList',
+        teacherEdit : '../js/teacherEdit',
+        util : '../js/util'
     },
     shim : {
       bootstrap : {

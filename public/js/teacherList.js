@@ -9,7 +9,6 @@ define(['jquery','template','cookie','bootstrap'], function ($,template) {
         success : function (data) {
             //Ä£°å°ó¶¨Êý¾Ý
             if(data.code === 200){
-                console.log(data);
                 var html = template('teacherInfo',{list:data.result});
                 $('.teacher-list tbody').html(html);
                 //启用/注销功能
