@@ -16,6 +16,7 @@ require.config({
         login : '../js/login',
         teacherList : '../js/teacherList',
         teacherEdit : '../js/teacherEdit',
+        settings : '../js/settings',
         util : '../js/util'
     },
     shim : {
@@ -24,6 +25,9 @@ require.config({
       },
       language : {
         deps : ['jquery','datePicker']
+      },
+      validate : {
+        deps : ['jquery']
       }
     }
 });
