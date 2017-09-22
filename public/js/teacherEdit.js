@@ -1,4 +1,4 @@
-define(['jquery','template','util'],function($,template,util){
+define(['jquery','template','util','datePicker','language','formSubmit','validate'],function($,template,util){
   var tcId = util.getParas('tc_id');
   if(tcId){
     //编辑教师
@@ -24,22 +24,53 @@ define(['jquery','template','util'],function($,template,util){
     getAjaxData('/api/teacher/add');
   }
 
-  //封装一个ajax请求方法
+  //利用form插件和validate插件
   function getAjaxData(url){
-    $('#teacherBtn').on('click',function(){
-      var formData = $('#teacherForm').serialize();
-      $.ajax({
-        type : 'post',
-        url : url,
-        data : formData,
-        dataType : 'json',
-        success : function(data){
-          if(data.code == 200){
-            location.href = '/teacher/list';
+    $("#teacherForm").validate({
+      sendForm : false,
+      valid : function(){
+        $(this).ajaxSubmit({
+          type : 'post',
+          url : url,
+          dataType : 'json',
+          success : function(data){
+            if(data.code == 200){
+              location.href = '/teacher/list';
+            }
           }
+        })
+      },
+      description : {
+        tcName : {
+          required : '内容不能为空'
+        },
+        tcPass : {
+          required : '密码不能为空',
+          pattern : '密码必须为6位数字'
+        },
+        tcJoinDate : {
+          required : '日期不能为空'
         }
-      })
+      }
     })
-    
   }
+
+  //封装一个ajax请求方法
+  // function getAjaxData(url){
+  //   $('#teacherBtn').on('click',function(){
+  //     var formData = $('#teacherForm').serialize();
+  //     $.ajax({
+  //       type : 'post',
+  //       url : url,
+  //       data : formData,
+  //       dataType : 'json',
+  //       success : function(data){
+  //         if(data.code == 200){
+  //           location.href = '/teacher/list';
+  //         }
+  //       }
+  //     })
+  //   })
+    
+  // }
 });
