@@ -1,7 +1,9 @@
 /**
  * Created by 54023 on 2017/9/19.
  */
-define(['jquery','template','cookie','bootstrap'], function ($,template) {
+define(['jquery','template','util','cookie','bootstrap','state'], function ($,template,util) {
+    //设置菜单高亮
+    util.setMenu(location.pathname);
     $.ajax({
         type : 'get',
         url : '/api/teacher',

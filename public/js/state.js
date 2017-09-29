@@ -1,0 +1,9 @@
+define(['jquery'],function($){
+  //设置遮罩效果
+  $(document).ajaxStart(function(){
+    $('.overlay').show();
+  })
+  $(document).ajaxStop(function(){
+    $('.overlay').hide();
+  })
+});

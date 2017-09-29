@@ -1,7 +1,7 @@
-define(['jquery','template','cookie'], function ($, template) {
-    //NProgress.start();
-    //
-    //NProgress.done();
+define(['jquery','template','nprogress','cookie'], function ($, template,NProgress) {
+    NProgress.start();
+    
+    NProgress.done();
 
     $('.navs ul').prev('a').on('click', function () {
         $(this).next().slideToggle();
